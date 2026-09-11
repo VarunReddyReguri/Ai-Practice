@@ -1,0 +1,29 @@
+name: GitHub Actions Demo
+
+# Defines the events that trigger the workflow
+on:
+  push:
+    branches: [ "main" ] # Triggers on code push to the main branch
+  pull_request:
+    branches: [ "main" ] # Triggers when a PR is opened against main
+  workflow_dispatch:     # Allows you to trigger this workflow manually
+
+# Defines the execution steps
+jobs:
+  demo-job:
+    name: Run Demo Steps
+    runs-on: ubuntu-latest # The virtual environment type
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4 # Downloads your code into the runner
+
+      - name: Print Hello Message
+        run: echo "Hello, World! This is running inside GitHub Actions."
+
+      - name: Show Server Info
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "Operating System details:"
+          uname -a
